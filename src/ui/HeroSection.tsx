@@ -1,5 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Suspense } from "react";
+import FloatingCore from "./FloatingCore";
 // import { Suspense, lazy } from "react";
 
 // const FloatingGeometry = lazy(() => import("./FloatingGeometry"));
@@ -21,9 +23,17 @@ function HeroSection() {
       </div>
 
       {/* 3D Scene */}
-      {/* <Suspense fallback={null}>
-        <FloatingGeometry />
-      </Suspense> */}
+      <motion.div
+        style={{ y, opacity }}
+        className="absolute inset-0 pointer-events-none"
+      >
+        <Suspense fallback={<div>Loading 3D...</div>}>
+          <FloatingCore
+            modelPath="/FloatingCore.glb"
+            className="w-full h-full"
+          />
+        </Suspense>
+      </motion.div>
 
       {/* Content */}
       <motion.div
