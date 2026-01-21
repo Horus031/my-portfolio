@@ -65,7 +65,7 @@ function ProjectCard({
               <p className="text-primary text-xs tracking-widest uppercase mb-2">
                 {project.category}
               </p>
-              <h3 className="font-display text-2xl md:text-3xl font-medium text-foreground group-hover:text-gradient-warm transition-all duration-300">
+              <h3 className="font-display text-2xl md:text-3xl font-medium text-text-primary group-hover:text-gradient-warm transition-all duration-300">
                 {project.title}
               </h3>
             </div>
@@ -115,7 +115,7 @@ function ProjectsSection() {
         <div className="absolute top-1/3 right-0 w-80 h-80 bg-glow-primary/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="container-wide relative z-10">
+      <div className="container-wide relative z-10 text-text-primary">
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: 40 }}

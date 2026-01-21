@@ -52,18 +52,18 @@ function Navigation() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed px-16 top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-0 px-16 max-w-360 top-0 h-fit flex justify-between mx-auto z-50 transition-all duration-500 ${
         isScrolled ? "glass py-4" : "py-6"
       }`}
     >
-      <nav className="section-padding flex items-center justify-between container-wide">
+      <nav className="section-padding w-full flex items-center justify-between container-wide text-text-primary">
         <motion.a
           href="#"
           className="font-display text-xl font-semibold tracking-tight text-foreground"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <span className="text-gradient-warm">H o r u s</span>
+          <span className="bg-linear-to-r from-primary to-text-primary text-transparent bg-clip-text">H o r u s</span>
         </motion.a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -74,8 +74,8 @@ function Navigation() {
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`relative font-body text-sm tracking-wide transition-colors duration-300 ${
                   activeSection === item.href.slice(1)
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-text-primary"
+                    : "text-text-primary hover:text-primary"
                 }`}
               >
                 {item.label}

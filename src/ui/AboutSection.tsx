@@ -7,7 +7,7 @@ function AboutSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-32 md:py-48 section-padding relative">
+    <section id="about" className="py-32 md:py-48 section-padding relative text-text-primary">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-0 w-64 h-64 bg-glow-accent/10 rounded-full blur-[100px]" />
       </div>
@@ -24,7 +24,7 @@ function AboutSection() {
           <h2 className="font-display text-3xl md:text-5xl font-light leading-tight mb-12">
             Where logic meets
             <br />
-            <span className="text-muted-foreground">imagination</span>
+            <span className="">imagination</span>
           </h2>
         </motion.div>
 
@@ -35,12 +35,12 @@ function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-6"
           >
-            <p className="text-foreground/90 text-lg leading-relaxed">
+            <p className="text-text-primary text-lg leading-relaxed">
               I&apos;m a student developer with a deep appreciation for both the
               precision of code and the fluidity of art. My journey began with
               curiosity about how beautiful digital experiences are crafted.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="leading-relaxed">
               Now, I spend my time exploring the intersection of web development
               and artificial intelligence, driven by the belief that technology
               should feel as natural as breathing.
@@ -54,7 +54,7 @@ function AboutSection() {
             className="space-y-8"
           >
             <div className="space-y-3">
-              <h3 className="font-display text-xl text-foreground">
+              <h3 className="font-display text-xl text-primary">
                 Philosophy
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -65,7 +65,7 @@ function AboutSection() {
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-display text-xl text-foreground">Vision</h3>
+              <h3 className="font-display text-xl text-primary">Vision</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Building towards a future where AI amplifies human creativity,
                 making complex technology feel intuitive and accessible.

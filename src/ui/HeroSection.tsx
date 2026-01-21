@@ -1,7 +1,5 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Suspense } from "react";
-import FloatingCore from "./FloatingCore";
 // import { Suspense, lazy } from "react";
 
 // const FloatingGeometry = lazy(() => import("./FloatingGeometry"));
@@ -12,7 +10,7 @@ function HeroSection() {
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative z-50 min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-glow-primary/20 rounded-full blur-[120px] animate-glow-pulse" />
@@ -21,19 +19,6 @@ function HeroSection() {
           style={{ animationDelay: "2s" }}
         />
       </div>
-
-      {/* 3D Scene */}
-      <motion.div
-        style={{ y, opacity }}
-        className="absolute inset-0 pointer-events-none"
-      >
-        <Suspense fallback={<div>Loading 3D...</div>}>
-          <FloatingCore
-            modelPath="/FloatingCore.glb"
-            className="w-full h-full"
-          />
-        </Suspense>
-      </motion.div>
 
       {/* Content */}
       <motion.div

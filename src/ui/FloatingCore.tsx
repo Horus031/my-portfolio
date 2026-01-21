@@ -12,14 +12,46 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 interface FloatingCoreProps {
   modelPath?: string;
   className?: string;
+  cameraAnim: {
+    zoomIn: number;
+  };
 }
 
 export default function FloatingCore({
   modelPath = "/model.glb", // Đảm bảo đường dẫn file glb của bạn đúng
   className = "w-full h-full min-h-125",
+  cameraAnim = { zoomIn: 0 },
 }: FloatingCoreProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<THREE.Group | null>(null); // Lưu tham chiếu model để xoay
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null); // Store camera reference
+
+  // Update camera position when zoom changes
+  useEffect(() => {
+    if (!cameraRef.current) return;
+
+    const camera = cameraRef.current;
+
+    // Only update if there's actual animation
+    if (cameraAnim.zoomIn === 0) {
+      camera.position.set(0, 3.3, 4);
+      return;
+    }
+
+    // BASE
+    const base = {
+      x: 0,
+      y: 3.3,
+      z: 4,
+    };
+
+    // ZOOM IN
+    const zoomInZ = cameraAnim.zoomIn * -2.5;
+    const zoomInY = cameraAnim.zoomIn * -0.4;
+
+    // FINAL POSITION
+    camera.position.set(base.x, base.y + zoomInY, base.z + zoomInZ);
+  }, [cameraAnim]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -32,7 +64,8 @@ export default function FloatingCore({
 
     // 2. Camera setup
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.set(0, 3.1, 4); // Góc nhìn hơi chéo từ trên xuống như ảnh mẫu
+    camera.position.set(0, 3.3, 4); // Góc nhìn hơi chéo từ trên xuống như ảnh mẫu
+    cameraRef.current = camera; // Store camera in ref
 
     // 3. Renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -58,7 +91,7 @@ export default function FloatingCore({
     composer.addPass(bloomPass);
 
     // 5. Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+    const ambientLight = new THREE.AmbientLight(0xfbaa4a, 0.1);
     scene.add(ambientLight);
 
     const pointLight = new THREE.PointLight(0xfbaa4a, 10); // Đèn màu vàng giống lõi
@@ -93,7 +126,6 @@ export default function FloatingCore({
       // Lệnh xoay model:
       if (modelRef.current) {
         modelRef.current.rotation.y += 0.005; // Xoay chầm chậm quanh trục Y
-        // Bạn có thể thêm modelRef.current.rotation.z += 0.002 để xoay đa hướng
       }
 
       // Thay vì renderer.render, ta dùng composer.render để thấy hiệu ứng Glow

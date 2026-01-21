@@ -8,7 +8,7 @@ function ContactSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" className="py-32 md:py-48 section-padding relative">
+    <section id="contact" className="py-32 md:py-48 section-padding relative text-text-primary">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-linear-to-t from-primary/5 to-transparent" />
       </div>
@@ -41,7 +41,7 @@ function ContactSection() {
         >
           <a
             href="mailto:vominhnghia1878@gmail.com"
-            className="inline-block font-display text-2xl md:text-3xl text-foreground hover:text-primary transition-colors duration-300"
+            className="inline-block font-display text-2xl md:text-3xl text-text-primary hover:text-primary transition-colors duration-300"
           >
             vominhnghia1878@gmail.com
           </a>
@@ -61,7 +61,7 @@ function ContactSection() {
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm tracking-wide"
+                className="text-text-primary hover:text-primary border-1 p-2 rounded-md transition-colors duration-300 text-sm tracking-wide"
               >
                 {social.name}
               </motion.a>
